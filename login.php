@@ -10,7 +10,7 @@ $pass=$_POST['password'];
 // $fname='Enock';
 // $lname='Meston';
 // $phone='0783982872';
-// $pass='Enock1212'; 
+// $pass='Enock1212';   
 // $address='kigali';
 // $allergy='help';
 // $isValidEmail = filter_var($email,FILTER_VALIDATE_EMAIL);
@@ -26,7 +26,7 @@ if ($con) {
 		  	$loginQuery="SELECT * FROM `usertbl` WHERE `phoneNumber` LIKE '$phone' AND `password` LIKE '$pass'";
 		  	$query=mysqli_query($con,$loginQuery);
 			if (mysqli_num_rows($query)>0) {
-				echo "Login_Success";
+				echo "Login_Success"; 
 			}else{
 				echo "Wrong Password";
 			}
