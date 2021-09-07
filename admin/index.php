@@ -50,6 +50,10 @@ if (strlen($_SESSION['id']) == 0) {
                             <a href="Requests.php">Request</a>
                         </li>
 
+                        <li>
+                            <a href="done.php">Approved</a>
+                        </li>
+
                         <li class="nav-item">
                                 <a class="nav-link" href="logout.php">Logout</a>
                         </li>
@@ -84,6 +88,11 @@ if (strlen($_SESSION['id']) == 0) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="Requests.php">Request</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="done.php">Approved</a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.php">Logout</a>
                                 </li>
@@ -94,7 +103,7 @@ if (strlen($_SESSION['id']) == 0) {
                 <h2 class="mb-4">DashBoard</h2>
                
                 <div class="row">
-                    <!-- list requesting users -->
+                    <!-- list users -->
                      <!-- Tasks Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
@@ -124,7 +133,36 @@ if (strlen($_SESSION['id']) == 0) {
                             </div>
                         </div>
                     <!--  -->
-                           
+                           <!-- list Approved Request -->
+                     <!-- Tasks Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        
+                                        <div class="col mr-2">
+                                          <a href="done.php">  
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Approved Request
+                                            </div></a>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php $query = mysqli_query($con, "SELECT * from usertbl where Status=3");
+                                                    $countposts = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                    <?php echo htmlentities($countposts); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--  -->
                      
                            <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -153,6 +191,8 @@ if (strlen($_SESSION['id']) == 0) {
                        </div>
 
             </div>
+        </div>
+    </div>
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.js"></script>

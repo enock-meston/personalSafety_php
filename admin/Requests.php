@@ -6,14 +6,17 @@ if (strlen($_SESSION['id']) == 0) {
     header('location:../index.php');
 } else {
 
-    // $query=mysqli_query($con,"select tbltools.id as toolid,tbltools.Toolname as name,
-    // tbltools.ToolImage as image,tbltools.ToolDescription as ToolDescription,
-    // tbltools.isAllowedBy as allowed,tblcategory.CategoryName as category,studentbookingtbl.ActiveStatus as tstatus,tbltools.ToolCategory
-    // from studentbookingtbl,tbltools LEFT join tblcategory on tblcategory.c_id=tbltools.ToolCategory where 
-    // tbltools.ActiveStatus=1 and tbltools.isAllowedBy='student' and studentbookingtbl.ActiveStatus!=2 and studentbookingtbl.ActiveStatus!=3");
-
     $query = mysqli_query($con, "SELECT `uid`, `Firstname`, `Lastname`, `phoneNumber`, `password`, `address`,`GaudianPhoneNumber`, `Allergy`, `Status` FROM `usertbl` WHERE Status=2");
 
+
+   // Code for restore
+    if ($_GET['resid']) {
+        $id = intval($_GET['resid']);
+        $query = mysqli_query($con, "UPDATE usertbl set Status=3 where uid='$id'");
+        echo "<script>alert('Citizen was Helped');</script>";
+        echo "<script type='text/javascript'> document.location = 'Requests.php'; </script>";
+
+    }
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -74,6 +77,10 @@ if (strlen($_SESSION['id']) == 0) {
                             <a href="Requests.php">Request</a>
                         </li>
 
+                        <li>
+                            <a href="done.php">Approved</a>
+                        </li>
+
                         <li class="nav-item">
                                 <a class="nav-link" href="logout.php">Logout</a>
                         </li>
@@ -109,6 +116,9 @@ if (strlen($_SESSION['id']) == 0) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="Requests.php">Request</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="done.php">Approved</a>
+                                </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.php">Logout</a>
@@ -118,6 +128,22 @@ if (strlen($_SESSION['id']) == 0) {
                     </div>
                 </nav>
                 <h2 class="mb-4">Requests</h2>
+                <div class="col-sm-6">
+
+                                <?php if ($msg) { ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <strong>Well done!</strong> <?php echo htmlentities($msg); ?>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($delmsg) { ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>Oh snap!</strong> <?php echo htmlentities($delmsg); ?>
+                                    </div>
+                                <?php } ?>
+
+
+                            </div>
                     <table id="example" class="display table table-hover" style="width:100%">
                         <thead>
                             <tr>
@@ -143,7 +169,7 @@ if (strlen($_SESSION['id']) == 0) {
                                     <td><?php echo $row['GaudianPhoneNumber']; ?></td>
                                     <td><?php echo $row['Allergy'];?></td>
                                     <td>
-                                        <a href="" class="btn btn-danger">Approve</a>
+                                        <a href="Requests.php?resid=<?php echo htmlentities($row['uid']); ?>" title="Approve the Citizen Request" class="btn btn-danger">Approve</a>
                                     </td>
                                 </tr>
 
