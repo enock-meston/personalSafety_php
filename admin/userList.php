@@ -12,7 +12,7 @@ if (strlen($_SESSION['id']) == 0) {
     // from studentbookingtbl,tbltools LEFT join tblcategory on tblcategory.c_id=tbltools.ToolCategory where 
     // tbltools.ActiveStatus=1 and tbltools.isAllowedBy='student' and studentbookingtbl.ActiveStatus!=2 and studentbookingtbl.ActiveStatus!=3");
 
-    $query = mysqli_query($con, "SELECT `uid`, `Firstname`, `Lastname`, `phoneNumber`, `password`, `address`, `Allergy`, `Status` FROM `usertbl` WHERE 1");
+    $query = mysqli_query($con, "SELECT `uid`, `Firstname`, `Lastname`, `phoneNumber`, `password`, `address`,`GaudianPhoneNumber`, `Allergy`, `Status` FROM `usertbl`");
 
 ?>
     <!DOCTYPE html>
@@ -38,7 +38,7 @@ if (strlen($_SESSION['id']) == 0) {
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
         <!-- App title -->
-        <title><?php echo $_SESSION['Firstname'] . " " . $_SESSION['Lastname']; ?>| Asset Report</title>
+        <title><?php echo $_SESSION['Firstname'] . " " . $_SESSION['Lastname']; ?>| List of User</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -71,13 +71,17 @@ if (strlen($_SESSION['id']) == 0) {
                             <a href="userList.php">Users</a>
                         </li>
 
+                        <li>
+                            <a href="Requests.php">Request</a>
+                        </li>
+
                         <li class="nav-item">
                                 <a class="nav-link" href="logout.php">Logout</a>
                         </li>
                     </ul>
                     <div class="footer">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">nigoote.com</a>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart" aria-hidden="true"></i> by <a href="https://nigoote.com" target="_blank">nigoote.com</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
@@ -102,6 +106,11 @@ if (strlen($_SESSION['id']) == 0) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="userList.php">Users</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Requests.php">Request</a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.php">Logout</a>
                                 </li>
@@ -117,6 +126,7 @@ if (strlen($_SESSION['id']) == 0) {
                                 <th>Lastname</th>
                                 <th>phone Number</th>
                                 <th>address </th>
+                                <th>Gaudian PhoneNumber </th>
                                 <th>Allergy Word</th>
                             </tr>
                         </thead>
@@ -130,6 +140,7 @@ if (strlen($_SESSION['id']) == 0) {
                                     <td><?php echo $row['Lastname']; ?></td>
                                     <td><?php echo $row['phoneNumber']; ?></td>
                                     <td><?php echo $row['address']; ?></td>
+                                    <td><?php echo $row['GaudianPhoneNumber']; ?></td>
                                     <td><?php echo $row['Allergy'];?></td>
                                 </tr>
 
@@ -146,6 +157,7 @@ if (strlen($_SESSION['id']) == 0) {
                                 <th>Lastname</th>
                                 <th>phone Number</th>
                                 <th>address </th>
+                                <th>Gaudian PhoneNumber </th>
                                 <th>Allergy Word</th>
                             </tr>
                         </tfoot>

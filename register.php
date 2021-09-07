@@ -6,6 +6,8 @@ $phone=$_POST['phonenumber'];
 $pass=$_POST['password'];
 $address=$_POST['address'];
 $allergy=$_POST['allergy'];
+// GaudianPhoneNumber
+$Gaudian=$_POST['GaudianPhoneNumber'];
 
 // $fname='Enock';
 // $lname='Meston';
@@ -27,8 +29,8 @@ if ($con) {
 		  }else{
 		  	// inserting new user query
 		  	$status=1;
-		  	$sql_register= mysqli_query($con,"INSERT INTO `usertbl`(`Firstname`, `Lastname`, `phoneNumber`, `password`, `address`, `Allergy`, `Status`) 
-		  		VALUES ('$fname','$lname','$phone','$pass','$address','$allergy','$status')");
+		  	$sql_register= mysqli_query($con,"INSERT INTO `usertbl`(`Firstname`, `Lastname`, `phoneNumber`, `password`, `address`,`GaudianPhoneNumber`,`Allergy`, `Status`) 
+		  		VALUES ('$fname','$lname','$phone','$pass','$address','$Gaudian','$allergy','$status')");
 
 		  	if ($sql_register) {
 		  		echo "Successfully_Registered";

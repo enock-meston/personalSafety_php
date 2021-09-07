@@ -19,6 +19,17 @@ if (strlen($_SESSION['id']) == 0) {
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/style.css">
+
+        <!-- / -->
+           <!-- Custom fonts for this template-->
+    <link href="addd/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="addd/css/sb-admin-2.min.css" rel="stylesheet">
+
     </head>
     <body>
         
@@ -35,13 +46,17 @@ if (strlen($_SESSION['id']) == 0) {
                             <a href="userList.php">Users</a>
                         </li>
 
+                        <li>
+                            <a href="Requests.php">Request</a>
+                        </li>
+
                         <li class="nav-item">
                                 <a class="nav-link" href="logout.php">Logout</a>
                         </li>
                     </ul>
                     <div class="footer">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">nigoote.com</a>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart" aria-hidden="true"></i> by <a href="https://nigoote.com" target="_blank">nigoote.com</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
@@ -67,6 +82,9 @@ if (strlen($_SESSION['id']) == 0) {
                                     <a class="nav-link" href="userList.php">Users</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="Requests.php">Request</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="logout.php">Logout</a>
                                 </li>
                             </ul>
@@ -74,24 +92,65 @@ if (strlen($_SESSION['id']) == 0) {
                     </div>
                 </nav>
                 <h2 class="mb-4">DashBoard</h2>
-               <!-- numbers of users -->
-                           <a href="userList.php">
-                                <div class="col-lg-4 col-md-4 col-sm-6">
-                                    <div class="card-box widget-box-one">
-                                        <i class="mdi mdi-layers widget-one-icon"></i>
-                                        <div class="wigdet-one-content">
-                                            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">User Listed</p>
-                                            <?php $query = mysqli_query($con, "SELECT * from usertbl where Status=1");
-                                            $countposts = mysqli_num_rows($query);
-                                            ?>
-                                            <h2 style="color: #f37020;"><?php echo htmlentities($countposts); ?> <small></small></h2>
-
+               
+                <div class="row">
+                    <!-- list requesting users -->
+                     <!-- Tasks Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        
+                                        <div class="col mr-2">
+                                          <a href="userList.php">  
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">User Listed
+                                            </div></a>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <?php $query = mysqli_query($con, "SELECT * from usertbl");
+                                                    $countposts = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                    <?php echo htmlentities($countposts); ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                                <!-- end col -->
-                           <!-- end numbers of tools -->
+                            </div>
+                        </div>
+                    <!--  -->
+                           
+                     
+                           <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <a href="Requests.php"> 
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending helps Requests</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php $query = mysqli_query($con, "SELECT * from usertbl where Status=2");
+                                            $countposts = mysqli_num_rows($query);
+                                            ?>
+                                            <?php echo htmlentities($countposts); ?>
+                                            </div>
+                                        </div>
+                                    </a>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                       </div>
 
             </div>
         </div>
