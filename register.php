@@ -2,12 +2,12 @@
 include 'conn.php';
 $fname=$_POST['firstname'];
 $lname=$_POST['lastname'];
-$phone=$_POST['phonenumber'];
+$phone="+25".$_POST['phonenumber'];
 $pass=$_POST['password'];
 $address=$_POST['address'];
 $allergy=$_POST['allergy'];
 // GaudianPhoneNumber
-$Gaudian=$_POST['GaudianPhoneNumber'];
+$Gaudian="+25".$_POST['GaudianPhoneNumber'];
 
 // $fname='Enock';
 // $lname='Meston';

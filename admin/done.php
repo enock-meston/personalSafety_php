@@ -84,7 +84,7 @@ if (strlen($_SESSION['id']) == 0) {
             </nav>
             <!-- Page Content  -->
             <div id="content" class="p-4 p-md-5">
-                <h4>Personal Safety WebSite App</h4>
+                <h4>Woman Safety WebSite App</h4>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
                         <button type="button" id="sidebarCollapse" class="btn btn-primary">
