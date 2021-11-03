@@ -2,7 +2,7 @@
 require_once 'vendor/autoload.php';
 include 'conn.php';
  $phone=$_POST['phonenumber'];
- // $location=$_POST['location'];
+ $location=$_POST['location'];
 // $phone="+250780794274";
 
 
@@ -23,12 +23,12 @@ $sqlCheckPhoneNumber=mysqli_query($con,"SELECT * FROM `usertbl`
 		  		$lnm=$row['Lastname'];
 
 		  		// echo $row['GaudianPhoneNumber'];
-			  $messagebird = new MessageBird\Client('vvGWDXakfjqymim3bL0CTIZV1');
+			  $messagebird = new MessageBird\Client('wZV5e0cUgXLUpC1XdDORZxl7b');
 	$message = new MessageBird\Objects\Message;
 
 	$message->originator = $phone;
 	$message->recipients = $num; //always is me 
-	$message->body = $mes."  is me ".$lnm."  ".$fnm;
+	$message->body = $mes."  is me ".$lnm."  ".$fnm." "."and my location is  ".$location;
 	$response = $messagebird->messages->create($message);
 	print_r(json_encode($response));
 		  	}
